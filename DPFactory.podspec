@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "DPFactory"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "工厂类"
   s.homepage     = "https://github.com/HolyLe/DPFactory.git"
   s.license      = "MIT"
@@ -21,7 +21,9 @@ Pod::Spec.new do |s|
    s.platform     = :ios, "8.0"
    s.ios.deployment_target = '8.0'
    s.source       = { :git => "https://github.com/HolyLe/DPFactory.git", :tag =>          s.version.to_s } 
-
+  
+  s.public_header_files = 'Factory/DPFactory.h'
+  s.source_files  = "Factory/DPFactory.h"
   s.subspec 'ViewController' do |ss|
      ss.source_files = 'Factory/ViewController/*.{h,m}'
      ss.dependency "DPCategory"

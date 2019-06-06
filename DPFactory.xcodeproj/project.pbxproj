@@ -47,6 +47,7 @@
 		731325F822A8B00D009D0E46 /* DPCommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCommonViewController.m; sourceTree = "<group>"; };
 		731325FB22A8BA07009D0E46 /* DPCoreTextSizeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPCoreTextSizeTool.h; sourceTree = "<group>"; };
 		731325FC22A8BA07009D0E46 /* DPCoreTextSizeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DPCoreTextSizeTool.m; sourceTree = "<group>"; };
+		7313260722A8C641009D0E46 /* DPFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DPFactory.h; sourceTree = "<group>"; };
 		A47C41909D9E63AE9CEACE28 /* libPods-DPFactory.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DPFactory.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +101,7 @@
 		731325E022A8AE8D009D0E46 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				7313260722A8C641009D0E46 /* DPFactory.h */,
 				731325E222A8AFE1009D0E46 /* ViewController */,
 				731325E722A8AFE1009D0E46 /* Proxy */,
 				731325EA22A8AFE1009D0E46 /* TextLabel */,
