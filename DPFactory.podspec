@@ -29,11 +29,12 @@ Pod::Spec.new do |s|
 
   s.subspec 'Proxy' do |ss|
      ss.source_files = 'Factory/Proxy/*.{h,m}'
+
   end
   
   s.subspec 'TextLabel' do |ss|
      ss.source_files = 'Factory/TextLabel/*.{h,m}'
-     ss.framework  = "CoreText"
+     ss.framework  = "CoreText","UIKit"
   end
   s.subspec 'Timer' do |ss|
      ss.source_files = 'Factory/Timer/*.{h,m}'
