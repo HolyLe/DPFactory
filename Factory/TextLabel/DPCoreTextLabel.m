@@ -247,7 +247,8 @@ static CGFloat getWidth(void *ref) {
         }else if(line == 0){
             height = [[self.heightArray lastObject] floatValue] + self.contentInset.top + self.contentInset.bottom;
         }else{
-            height = [[self.heightArray safe_objectAtIndex:line] floatValue] + self.contentInset.top + self.contentInset.bottom;
+            CGFloat lineHeight = self.heightArray.count > line? [[self.heightArray objectAtIndex:line] floatValue] : 0;
+            height = lineHeight + self.contentInset.top + self.contentInset.bottom;
         }
         return height;
     };
