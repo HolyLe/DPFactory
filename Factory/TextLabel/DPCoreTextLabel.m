@@ -8,8 +8,6 @@
 
 #import "DPCoreTextLabel.h"
 #import <CoreText/CoreText.h>
-#import "DPCategory.h"
-
 
 #define DPCoreTextDefaultHeight 1
 #define DPCoreTextDefaultWidth 1
