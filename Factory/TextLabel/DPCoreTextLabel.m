@@ -17,7 +17,6 @@
     UIFont *_defaultTruncationFont;
     UIColor *_defaultTruncationColor;
     CGFloat _lastWidth;
-    
 }
 @property (nonatomic, strong) NSMutableAttributedString * attributedString;
 @property (nonatomic, strong) NSMutableAttributedString * truncationAttributedString;
@@ -81,9 +80,27 @@ static CGFloat getWidth(void *ref) {
     dic[(id)kCTForegroundColorAttributeName] = (id)color.CGColor;
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    if (_lastWidth != self.frame.size.width) {
+        _lastWidth = self.frame.size.width;
+        [self reloadDisplay];
+        if (_isReadyLayout) {
+            [self setNeedsDisplay];
+        }
+        if (self.heightChange) {
+            self.heightChange(ceil(self.frame.size.height),self);
+        }
+        if ([self.delegate respondsToSelector:@selector(coreTextLabel:titleHeightChanged:)]) {
+            [self.delegate coreTextLabel:self titleHeightChanged:self.frame.size.height];
+        }
+    }
+    
+}
+
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    //    if (rect.size.width == 0) return;
+    _isReadyLayout = NO;
     [self.heightArray removeAllObjects];
     CGFloat width = rect.size.width - _contentInset.left - _contentInset.right;
     CGFloat height = rect.size.height - _contentInset.bottom - _contentInset.top;
@@ -91,7 +108,6 @@ static CGFloat getWidth(void *ref) {
     CGContextSetTextMatrix(context, CGAffineTransformIdentity);
     CGContextTranslateCTM(context, 0, rect.size.height);
     CGContextScaleCTM(context, 1, -1);
-    
     NSMutableAttributedString *attributedString = self.attributedString;
     
     CGMutablePathRef path = CGPathCreateMutable();
@@ -129,26 +145,17 @@ static CGFloat getWidth(void *ref) {
                 NSAttributedString *truncationString = nil;
                 [_heightArray addObject:@(rect.size.height - OY)];
                 truncationString = [[NSMutableAttributedString alloc] initWithString:@"\u2026" attributes:_textAttributes];
-                
                 NSMutableAttributedString *moreString = truncationString.mutableCopy;
                 if (_truncationAttributedString) {
                     [moreString appendAttributedString:_truncationAttributedString];
                 }
                 CTLineRef moreLine = CTLineCreateWithAttributedString((CFAttributedStringRef)moreString);
-                
                 CGFloat tokenWidth;
-                
                 CTLineGetOffsetForStringIndex(moreLine, moreString.length, &tokenWidth);
-                
                 CFRelease(moreLine);
-                
-                
                 CFIndex truncationEndIndex = CTLineGetStringIndexForPosition(line, CGPointMake(width - tokenWidth - 10, 0));
-                
                 CTLineRef trucationLine = CTLineCreateWithAttributedString((CFAttributedStringRef)truncationString);
-                
                 NSInteger length = range.location + range.length - truncationEndIndex;
-                
                 NSMutableAttributedString *final = [[NSMutableAttributedString alloc] initWithAttributedString:[attributedString attributedSubstringFromRange:NSMakeRange(range.location, range.length)]];
                 
                 if (length <= final.length) {
@@ -176,13 +183,10 @@ static CGFloat getWidth(void *ref) {
                         [final appendAttributedString:_truncationAttributedString];
                     }
                 }
-                
                 CTLineRef fineLine = CTLineCreateWithAttributedString((CFAttributedStringRef)final);
                 CTLineTruncationType truncationType = kCTLineTruncationEnd;
                 CTLineRef lastLine = CTLineCreateTruncatedLine(fineLine, width, truncationType, trucationLine);
-                
                 CTRunRef truncationRun =(__bridge CTRunRef)[(__bridge NSArray *)CTLineGetGlyphRuns(lastLine) lastObject];
-                
                 CGFloat truncationascent;
                 CGFloat truncationdesent;
                 CGFloat truncationRunWidth = CTRunGetTypographicBounds(truncationRun, CFRangeMake(0, 0), &truncationascent, &truncationdesent, NULL);
@@ -190,7 +194,6 @@ static CGFloat getWidth(void *ref) {
                 CGFloat xOffset = OX + CTLineGetOffsetForStringIndex(lastLine, CTRunGetStringRange(truncationRun).location, NULL);
                 CGFloat yOffset = rect.size.height - OY - truncationascent;
                 self.trunctionClickRect = CGRectMake(xOffset, yOffset, truncationRunWidth, truncationRunHeight);
-                
                 CGContextSetTextPosition(context, OX, OY);
                 CTLineDraw(lastLine, context);
                 CFRelease(fineLine);
@@ -200,27 +203,6 @@ static CGFloat getWidth(void *ref) {
                 CTLineDraw(line, context);
             }
         }
-    }
-    
-    if ((DPCoreTextDefaultHeight == rect.size.height && rect.size.width != _lastWidth) || _isReadyLayout) {
-        _lastWidth = rect.size.width;
-        _isReadyLayout = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self invalidateIntrinsicContentSize];
-            [self setNeedsDisplay];
-        });
-    }
-    if (rect.size.height != DPCoreTextDefaultHeight) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (self.heightChange) {
-                self.heightChange(ceil(rect.size.height),self);
-            }
-            if ([self.delegate respondsToSelector:@selector(coreTextLabel:titleHeightChanged:)]) {
-                [self.delegate coreTextLabel:self titleHeightChanged:rect.size.height];
-            }
-        });
     }
     CGPathRelease(path);
     CFRelease(frame);
@@ -266,6 +248,9 @@ static CGFloat getWidth(void *ref) {
     CFAttributedStringRef attributedStringRef = (__bridge CFAttributedStringRef)_attributedString;
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attributedStringRef);
     CFRange range = CFRangeMake(0, 0);
+    if (size.width == 1) {
+        size.width = MAXFLOAT;
+    }
     if (_numberOflines > 0 && framesetter) {
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
@@ -285,7 +270,10 @@ static CGFloat getWidth(void *ref) {
     CFRange fitCFRange = CFRangeMake(0, 0);
     CGSize newSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, range, NULL, size, &fitCFRange);
     if (newSize.height > 0) {
-        newSize.height += _contentInset.top + _contentInset.bottom;
+        newSize.height = ceil(newSize.height+ _contentInset.top + _contentInset.bottom);
+    }
+    if (newSize.width > 0) {
+        newSize.width = ceil(newSize.width + _contentInset.left + _contentInset.right);
     }
     if (framesetter) {
         CFRelease(framesetter);
@@ -330,13 +318,9 @@ static CGFloat getWidth(void *ref) {
     [self addDic:_truncationAttributes font:_truncationFont];
 }
 
-- (void)reloadNewDisplay{
+- (void)reloadDisplay{
     [self.attributedString setAttributes:_textAttributes range:NSMakeRange(0, self.attributedString.length)];
     [self.truncationAttributedString setAttributes:_truncationAttributes range:NSMakeRange(0, self.truncationAttributedString.length)];
-    [self reloadDisplay];
-}
-
-- (void)reloadDisplay{
     NSInteger length = self.attributedString.length;
     if (![_text isEqualToString:self.attributedString.string]) {
         [self.attributedString deleteCharactersInRange:NSMakeRange(0, length)];
@@ -412,7 +396,6 @@ static CGFloat getWidth(void *ref) {
             CGPoint point = [touch locationInView:self];
             if (CGRectContainsPoint(self.trunctionClickRect, point)) {
                 self.numberOflines = 0;
-                _isReadyLayout = YES;
                 self.truncationClick(self);
                 [self reloadDisplay];
                 self.trunctionClickRect = CGRectMake(- 10, - 10, 0, 0);

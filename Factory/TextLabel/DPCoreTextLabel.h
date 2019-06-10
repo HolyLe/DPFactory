@@ -56,8 +56,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)reloadDisplay;
 
-- (void)reloadNewDisplay;
-
 @end
 
 NS_ASSUME_NONNULL_END
