@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "DPFactory"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "工厂类"
   s.homepage     = "https://github.com/HolyLe/DPFactory.git"
   s.license      = "MIT"
