@@ -12,7 +12,7 @@
 + (UITableView *)tableViewStyle:(UITableViewStyle)style{
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.backgroundColor = [UIColor whiteColor];
+//    tableView.backgroundColor = [UIColor whiteColor];
     tableView.showsVerticalScrollIndicator = NO;
     tableView.showsHorizontalScrollIndicator = NO;
     return tableView;

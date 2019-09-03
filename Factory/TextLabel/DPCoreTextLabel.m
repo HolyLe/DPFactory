@@ -46,7 +46,7 @@ static CGFloat getWidth(void *ref) {
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor whiteColor];
         _defaultTextFont = [UIFont systemFontOfSize:14];
         _defaultTextColor = [UIColor blackColor];
         _defaultTruncationFont = [UIFont systemFontOfSize:14];

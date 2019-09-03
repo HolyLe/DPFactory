@@ -30,7 +30,7 @@
 - (void)setup{
     _statusDic = [NSMutableDictionary dictionary];
     _currentTag = -999;
-    self.backgroundColor = [UIColor whiteColor];
+//    self.backgroundColor = [UIColor whiteColor];
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(naviTap)]];
     [self.line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_offset(0);

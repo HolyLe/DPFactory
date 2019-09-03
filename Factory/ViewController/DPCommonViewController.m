@@ -30,7 +30,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 #endif
     
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     if ([self conformsToProtocol:@protocol(DPCommonNavigationProtocol)]) {
         [self commonSetupNavigationView];
     }
@@ -172,7 +172,8 @@
     .showsVerticalScrollIndicator(NO)
     .showsHorizontalScrollIndicator(NO)
     .adJustedContentIOS11()
-    .backgroundColor([UIColor whiteColor]);
+//    .backgroundColor([UIColor whiteColor])
+    ;
 
     vc.collectionView = collectionView;
     SEL sel1 = NSSelectorFromString(@"commonCollectionViewSuperView");
