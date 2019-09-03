@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731B8E4C231ECA010011385D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B8E4B231ECA010011385D /* Util.swift */; };
 		AFE08CEBA2D3B828E7E7435E /* libPods-ShareSDKForSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9BD230B49B3404C3F22D50 /* libPods-ShareSDKForSwift.a */; };
 		D5882760231E1E8B00260B6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D588275A231E1E8B00260B6B /* Assets.xcassets */; };
 		D5882761231E1E8B00260B6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D588275C231E1E8B00260B6B /* LaunchScreen.storyboard */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		0A9BD230B49B3404C3F22D50 /* libPods-ShareSDKForSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareSDKForSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDEA13B1EFD38E80738CD17 /* Pods-ShareSDKForSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.debug.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		731B8E4B231ECA010011385D /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8A383BEBBC1A55D5556279BD /* Pods-ShareSDKForSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.release.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.release.xcconfig"; sourceTree = "<group>"; };
 		D5882739231E1D7200260B6B /* ShareSDKForSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareSDKForSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D588275A231E1E8B00260B6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 				8A383BEBBC1A55D5556279BD /* Pods-ShareSDKForSwift.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		731B8E4A231EC96D0011385D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				731B8E4B231ECA010011385D /* Util.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		D5882730231E1D7200260B6B = {
@@ -242,6 +252,7 @@
 		D5882777231E24F400260B6B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				731B8E4A231EC96D0011385D /* Util */,
 				D5882778231E6E3700260B6B /* Chain */,
 			);
 			path = Tools;
@@ -448,6 +459,7 @@
 				D58827A2231E6E3700260B6B /* CATextLayer+XPChain.swift in Sources */,
 				D58827AA231E6E3700260B6B /* UIScrollView+XPChain.swift in Sources */,
 				D58827A4231E6E3700260B6B /* CATransFormLayer+XPChain.swift in Sources */,
+				731B8E4C231ECA010011385D /* Util.swift in Sources */,
 				D58827A8231E6E3700260B6B /* UITextView+XPChain.swift in Sources */,
 				D58827B4231E6E3700260B6B /* UIControl+XPChain.swift in Sources */,
 				D58827B6231E6E3700260B6B /* UISwitch+XPChain.swift in Sources */,

@@ -46,7 +46,7 @@ class MobShareTitleView: UIView {
             .addToSuperView(self).object
     }()
     
-    open var selectedIndex : ((_ index : Int) -> Void)?
+    private var myselectedIndex : ((_ index : Int) -> Void)?
     
     var dataSource : Array<String>{
         get {
@@ -97,12 +97,14 @@ class MobShareTitleView: UIView {
         }
     }
     @objc func buttonClick(_ button : MobButton) {
-        selectIndex(button.tag)
-        if selectedIndex != nil {
-            selectIndex(button.tag)
+//        selectIndex(button.tag)
+        if myselectedIndex != nil {
+            myselectedIndex!(button.tag)
         }
     }
-    
+    func selectedIndex(_ clo: @escaping (_ index : Int) -> Void) {
+        myselectedIndex = clo
+    }
     func selectIndex(_ index : Int){
         if _selectIndex == index {return}
         let butt = self.subviews[_selectIndex] as! MobButton
@@ -112,35 +114,83 @@ class MobShareTitleView: UIView {
         let button = self.subviews[index] as! MobButton
         button.isSelected = true
         button.isShouldEnable = false
-//        UIView.animate(withDuration: 0.3) {
-            self.line.make_chain.updateSnp { (make) in
+        UIView.animate(withDuration: 0.3) {
+            self.line.make_chain.remakeSnp { (make) in
                 make.centerX.equalTo(button)
                 make.width.equalTo(button)
-//                make.bottom.equalTo(self)
-//                make.height.equalTo(1)
+                make.bottom.equalTo(self)
+                make.height.equalTo(1)
             }
-            
             self.layoutIfNeeded()
-            
-            
-//        }
+        }
         
     }
 }
 
-class MOBViewController: UIViewController {
+class MOBViewController: UIViewController, UIScrollViewDelegate {
+    lazy var titleView : MobShareTitleView = {
+        let titleView = MobShareTitleView.init()
+        titleView.dataSource = ["分享", "授权", "用户信息"]
+        titleView.selectedIndex({ [unowned self](index) in
+            self.selectedIndex(index)
+        })
+        return titleView
+    }()
+    
+    let screenWidth = UIScreen.main.bounds.size.width
+    let screenHeight = UIScreen.main.bounds.size.height
+    lazy var _scrollView: UIScrollView = {
+        UIScrollView()
+        .make_chain
+        .addToSuperView(self.view)
+            .contentSize(CGSize.init(width: screenWidth * CGFloat(self.titleView.dataSource.count), height:screenHeight ))
+        .delegate(self)
+        .showsVerticalScrollIndicator(false)
+        .showsHorizontalScrollIndicator(false)
+        .makeSnp { (make) in
+            make.edges.equalTo(0)
+        }.object
+    }()
+    
+    var viewControllers : [Any] = ["", "", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let titleView = MobShareTitleView.init()
-        titleView.dataSource = ["分享", "授权", "用户信息"]
         self.navigationItem.titleView = titleView
+    
+        selectedIndex(0)
         
         // Do any additional setup after loading the view.
     }
     
+    func selectedIndex(_ index : Int) {
+        var vc = viewControllers[index]
+        
+        if vc is UIViewController {
+            _scrollView.setContentOffset(CGPoint.init(x: screenWidth * CGFloat(index), y: 0), animated: true)
+        }else{
+            
+            let childVcClass = getClassFromString(vc as? String) as? UIViewController.Type
+            vc = childVcClass?.init() ?? UIViewController.init()
+            viewControllers[index] = vc
+            let viewController : UIViewController = vc as! UIViewController
+            
+            viewController.view.make_chain
+            .addToSuperView(_scrollView)
+            .backgroundColor(.red)
+            .makeSnp { (make) in
+                make.left.equalTo(screenWidth * CGFloat(index))
+                make.top.equalTo(0)
+                make.height.equalTo(screenHeight)
+                make.width.equalTo(screenWidth)
+            }
+            
+        }
+    }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        titleView.selectIndex(Int(ceil(scrollView.contentOffset.x / screenWidth + 0.5)))
+    }
     
 }
 
