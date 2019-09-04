@@ -8,7 +8,7 @@
 
 import UIKit
 
-@available(iOS 11.0, *)
+
 extension XPChain where Base : UITableView {
     
     @discardableResult
@@ -22,7 +22,7 @@ extension XPChain where Base : UITableView {
         object.delegate = delegate
         return self
     }
-    
+    @available(iOS 11.0, *)
     @discardableResult
     func prefetchDataSource(_ prefetchDataSource : UITableViewDataSourcePrefetching?) -> XPChain {
         object.prefetchDataSource = prefetchDataSource
