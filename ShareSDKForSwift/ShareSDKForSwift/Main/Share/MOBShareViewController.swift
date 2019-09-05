@@ -18,9 +18,24 @@ class MOBShareTableViewCell: MOBHeadPicterTableViewCell {
     }
     
 }
-class MOBShareViewController: UIViewController {
+class MOBShareViewController: UIViewController, MOBTableViewProtocol {
+    var tableView: UITableView?
+    var dataSource : [MOBPlatformModel] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.make_chain.register(MOBShareTableViewCell.self, forCellReuseIdentifier: "MOBShareTableViewCell")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count;
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "MOBShareTableViewCell", for: indexPath).model(dataSource[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }

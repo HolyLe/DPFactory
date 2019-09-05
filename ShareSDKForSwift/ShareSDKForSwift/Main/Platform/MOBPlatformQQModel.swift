@@ -9,9 +9,15 @@
 import Foundation
 
 
-let WeChat = MOBPlatformModel
-    .init(1, "WeChat", "sns_icon_22")
-    .configureShareInfo { (a) in
-        
-}
+
+
+
+
+
+
+
+
+
+
+
 

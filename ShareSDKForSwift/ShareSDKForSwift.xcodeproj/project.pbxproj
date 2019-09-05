@@ -158,6 +158,7 @@
 		D5AC9A27231FD84100A49E97 /* sns_icon_42.png in Resources */ = {isa = PBXBuildFile; fileRef = D5AC99C3231FD84000A49E97 /* sns_icon_42.png */; };
 		D5AC9A28231FD84100A49E97 /* sns_icon_56.png in Resources */ = {isa = PBXBuildFile; fileRef = D5AC99C4231FD84000A49E97 /* sns_icon_56.png */; };
 		D5AC9A2A231FE1E200A49E97 /* MOBPlatformModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AC9A29231FE1E200A49E97 /* MOBPlatformModel.swift */; };
+		D5C86EB82320A9D500EFBF73 /* MOBCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C86EB72320A9D500EFBF73 /* MOBCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -316,6 +317,7 @@
 		D5AC99C3231FD84000A49E97 /* sns_icon_42.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sns_icon_42.png; sourceTree = "<group>"; };
 		D5AC99C4231FD84000A49E97 /* sns_icon_56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sns_icon_56.png; sourceTree = "<group>"; };
 		D5AC9A29231FE1E200A49E97 /* MOBPlatformModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBPlatformModel.swift; sourceTree = "<group>"; };
+		D5C86EB72320A9D500EFBF73 /* MOBCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				731B8E4B231ECA010011385D /* Util.swift */,
+				D5C86EB72320A9D500EFBF73 /* MOBCache.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				D58827AC231E6E3700260B6B /* UITextInputTraits+Swift.swift in Sources */,
 				D58827BF231E6E3700260B6B /* UILongPressGesture+XPChain.swift in Sources */,
 				D51BF17E231F58D7008155A6 /* MOBUserInfoViewController.swift in Sources */,
+				D5C86EB82320A9D500EFBF73 /* MOBCache.swift in Sources */,
 				D588276B231E1EA600260B6B /* SceneDelegate.swift in Sources */,
 				D58827B2231E6E3700260B6B /* UIVisualEffectView+XPChain.swift in Sources */,
 				D588279F231E6E3700260B6B /* XPChain.swift in Sources */,
