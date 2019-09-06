@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		731B8E4C231ECA010011385D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B8E4B231ECA010011385D /* Util.swift */; };
 		AFE08CEBA2D3B828E7E7435E /* libPods-ShareSDKForSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9BD230B49B3404C3F22D50 /* libPods-ShareSDKForSwift.a */; };
+		D5097C0823225F4F00C60756 /* MOBPlatformDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5097C0723225F4F00C60756 /* MOBPlatformDataSources.swift */; };
+		D5097C0A2322661500C60756 /* UIColor+ShareSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5097C092322661400C60756 /* UIColor+ShareSDK.swift */; };
+		D5097C0C2322662100C60756 /* String+ShareSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5097C0B2322662100C60756 /* String+ShareSDK.swift */; };
 		D51BF17C231F58BA008155A6 /* MOBShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51BF17B231F58BA008155A6 /* MOBShareViewController.swift */; };
 		D51BF17E231F58D7008155A6 /* MOBUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51BF17D231F58D7008155A6 /* MOBUserInfoViewController.swift */; };
 		D51BF180231F58E5008155A6 /* MOBAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51BF17F231F58E5008155A6 /* MOBAuthViewController.swift */; };
@@ -56,7 +59,7 @@
 		D58827C1231E6E3700260B6B /* UIRotationGesture+XPChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D588279E231E6E3700260B6B /* UIRotationGesture+XPChain.swift */; };
 		D58827C3231E740B00260B6B /* XPChain+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58827C2231E740B00260B6B /* XPChain+SnapKit.swift */; };
 		D58827C6231E7EBD00260B6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D58827C4231E7EBD00260B6B /* Main.storyboard */; };
-		D5AC995F231FC6E300A49E97 /* MOBPlatformQQModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AC995E231FC6E300A49E97 /* MOBPlatformQQModel.swift */; };
+		D5AC995F231FC6E300A49E97 /* MOBPlatformSina.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AC995E231FC6E300A49E97 /* MOBPlatformSina.swift */; };
 		D5AC99C5231FD84100A49E97 /* sns_icon_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5AC9961231FD84000A49E97 /* sns_icon_8@2x.png */; };
 		D5AC99C6231FD84100A49E97 /* sns_icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = D5AC9962231FD84000A49E97 /* sns_icon_58.png */; };
 		D5AC99C7231FD84100A49E97 /* sns_icon_30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5AC9963231FD84000A49E97 /* sns_icon_30@2x.png */; };
@@ -166,6 +169,13 @@
 		3DDEA13B1EFD38E80738CD17 /* Pods-ShareSDKForSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.debug.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		731B8E4B231ECA010011385D /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8A383BEBBC1A55D5556279BD /* Pods-ShareSDKForSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.release.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.release.xcconfig"; sourceTree = "<group>"; };
+		D5097C012322526C00C60756 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		D5097C022322526C00C60756 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		D5097C04232253A700C60756 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D5097C06232253AA00C60756 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/Main.strings; sourceTree = "<group>"; };
+		D5097C0723225F4F00C60756 /* MOBPlatformDataSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBPlatformDataSources.swift; sourceTree = "<group>"; };
+		D5097C092322661400C60756 /* UIColor+ShareSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ShareSDK.swift"; sourceTree = "<group>"; };
+		D5097C0B2322662100C60756 /* String+ShareSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ShareSDK.swift"; sourceTree = "<group>"; };
 		D51BF17B231F58BA008155A6 /* MOBShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBShareViewController.swift; sourceTree = "<group>"; };
 		D51BF17D231F58D7008155A6 /* MOBUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBUserInfoViewController.swift; sourceTree = "<group>"; };
 		D51BF17F231F58E5008155A6 /* MOBAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBAuthViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +225,7 @@
 		D588279E231E6E3700260B6B /* UIRotationGesture+XPChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRotationGesture+XPChain.swift"; sourceTree = "<group>"; };
 		D58827C2231E740B00260B6B /* XPChain+SnapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XPChain+SnapKit.swift"; sourceTree = "<group>"; };
 		D58827C5231E7EBD00260B6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		D5AC995E231FC6E300A49E97 /* MOBPlatformQQModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBPlatformQQModel.swift; sourceTree = "<group>"; };
+		D5AC995E231FC6E300A49E97 /* MOBPlatformSina.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MOBPlatformSina.swift; sourceTree = "<group>"; };
 		D5AC9961231FD84000A49E97 /* sns_icon_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sns_icon_8@2x.png"; sourceTree = "<group>"; };
 		D5AC9962231FD84000A49E97 /* sns_icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sns_icon_58.png; sourceTree = "<group>"; };
 		D5AC9963231FD84000A49E97 /* sns_icon_30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sns_icon_30@2x.png"; sourceTree = "<group>"; };
@@ -345,6 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				731B8E4B231ECA010011385D /* Util.swift */,
+				D5097C092322661400C60756 /* UIColor+ShareSDK.swift */,
+				D5097C0B2322662100C60756 /* String+ShareSDK.swift */,
 				D5C86EB72320A9D500EFBF73 /* MOBCache.swift */,
 			);
 			path = Util;
@@ -550,7 +562,8 @@
 			isa = PBXGroup;
 			children = (
 				D5AC9A29231FE1E200A49E97 /* MOBPlatformModel.swift */,
-				D5AC995E231FC6E300A49E97 /* MOBPlatformQQModel.swift */,
+				D5AC995E231FC6E300A49E97 /* MOBPlatformSina.swift */,
+				D5097C0723225F4F00C60756 /* MOBPlatformDataSources.swift */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -714,6 +727,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = D5882730231E1D7200260B6B;
 			productRefGroup = D588273A231E1D7200260B6B /* Products */;
@@ -876,6 +890,7 @@
 				D58827B3231E6E3700260B6B /* UITableView+XPChain.swift in Sources */,
 				D58827C0231E6E3700260B6B /* UIGesture+XPChain.swift in Sources */,
 				D58827B0231E6E3700260B6B /* UISlider+XPChain.swift in Sources */,
+				D5097C0C2322662100C60756 /* String+ShareSDK.swift in Sources */,
 				D58827A1231E6E3700260B6B /* CAReplicatorLayer+XPChain.swift in Sources */,
 				D58827AD231E6E3700260B6B /* UIImageView+XPChain.swift in Sources */,
 				D58827AB231E6E3700260B6B /* UICollectionView+XPChain.swift in Sources */,
@@ -900,6 +915,7 @@
 				D58827A4231E6E3700260B6B /* CATransFormLayer+XPChain.swift in Sources */,
 				731B8E4C231ECA010011385D /* Util.swift in Sources */,
 				D58827A8231E6E3700260B6B /* UITextView+XPChain.swift in Sources */,
+				D5097C0A2322661500C60756 /* UIColor+ShareSDK.swift in Sources */,
 				D58827B4231E6E3700260B6B /* UIControl+XPChain.swift in Sources */,
 				D51BF17C231F58BA008155A6 /* MOBShareViewController.swift in Sources */,
 				D58827B6231E6E3700260B6B /* UISwitch+XPChain.swift in Sources */,
@@ -909,10 +925,11 @@
 				D58827BC231E6E3700260B6B /* UIPanGesutre+XPChain.swift in Sources */,
 				D58827A6231E6E3700260B6B /* CAScrollLayer+XPChain.swift in Sources */,
 				D58827B8231E6E3700260B6B /* UILabel+XPChain.swift in Sources */,
+				D5097C0823225F4F00C60756 /* MOBPlatformDataSources.swift in Sources */,
 				D58827B7231E6E3700260B6B /* UISegment+XPChain.swift in Sources */,
 				D51BF180231F58E5008155A6 /* MOBAuthViewController.swift in Sources */,
 				D58827AF231E6E3700260B6B /* UIPickerView+XPChain.swift in Sources */,
-				D5AC995F231FC6E300A49E97 /* MOBPlatformQQModel.swift in Sources */,
+				D5AC995F231FC6E300A49E97 /* MOBPlatformSina.swift in Sources */,
 				D58827A5231E6E3700260B6B /* CALayer+XPChain.swift in Sources */,
 				D58827BD231E6E3700260B6B /* UITapGesture+XPChain.swift in Sources */,
 				D5AC9A2A231FE1E200A49E97 /* MOBPlatformModel.swift in Sources */,
@@ -926,6 +943,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				D588275D231E1E8B00260B6B /* Base */,
+				D5097C012322526C00C60756 /* zh-Hans */,
+				D5097C04232253A700C60756 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -934,6 +953,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				D58827C5231E7EBD00260B6B /* Base */,
+				D5097C022322526C00C60756 /* zh-Hans */,
+				D5097C06232253AA00C60756 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -945,6 +966,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1005,6 +1027,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 
+
 class MOBHeadPicterTableViewCell: UITableViewCell {
     
     lazy var picter : UIImageView = {
@@ -20,7 +21,7 @@ class MOBHeadPicterTableViewCell: UITableViewCell {
     }()
     
     lazy var line : UIView = {
-        UIView.init()
+        UIView.init().make_chain.backgroundColor(.lightGray).object
     }()
     
     
@@ -31,14 +32,22 @@ class MOBHeadPicterTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has @objc not been implemented")
     }
     
     func setup()  {
+       picter.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(20)
+            make.centerY.equalToSuperview()
+       }
+       nameLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(picter).offset(10)
+            make.centerY.equalTo(picter)
+       }
         
     }
     
-    func updateModel(_ model: Any) {
+    func updateModel(_ model: MOBPlatformModel) {
         
     }
 }
@@ -271,7 +280,7 @@ class MOBViewController: UIViewController, UIScrollViewDelegate {
         let vc = viewControllers.safeObject(index)
         if var object = vc {
             if object is String {
-                let childVcClass = getClassFromString(object as? String) as? UIViewController.Type
+                let childVcClass = (object as! String).getClass() as? UIViewController.Type
                 object = childVcClass?.init() ?? UIViewController.init()
                 viewControllers[index] = object
                 let viewController : UIViewController = object as! UIViewController

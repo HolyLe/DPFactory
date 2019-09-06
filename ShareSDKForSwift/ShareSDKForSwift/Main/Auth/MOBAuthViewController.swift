@@ -14,7 +14,7 @@ class MOBAuthTableViewCell: MOBHeadPicterTableViewCell {
         UIImageView.init()
     }()
     
-    func updateModel(_ model: MOBPlatformModel) {
+    override func updateModel(_ model: MOBPlatformModel) {
         super.updateModel(model)
     }
     

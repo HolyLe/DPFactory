@@ -13,17 +13,17 @@ class MOBShareTableViewCell: MOBHeadPicterTableViewCell {
         UIImageView.init()
     }()
     
-    override func updateModel(_ model: Any) {
+    override func updateModel(_ model: MOBPlatformModel) {
          super.updateModel(model)
+            
     }
     
 }
 class MOBShareViewController: UIViewController, MOBTableViewProtocol {
     var tableView: UITableView?
-    var dataSource : [MOBPlatformModel] = []
+    var dataSource : [MOBPlatformModel] = MOBPlatformDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.make_chain.register(MOBShareTableViewCell.self, forCellReuseIdentifier: "MOBShareTableViewCell")
     }
     

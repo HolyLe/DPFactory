@@ -95,7 +95,7 @@ extension MOBTableViewProtocol where Self : UIViewController{
 extension UITableViewCell : MOBTableViewCellProtocol {
     func model(_ model: Any) -> Self {
         
-        let sel = sel_registerName(("updateModel(_:)".toUnsafeMutablePointer())!)
+        let sel = sel_registerName(("updateModel:".toUnsafeMutablePointer())!)
         if self.responds(to: sel) {
             self.perform(sel, with: model)
         }

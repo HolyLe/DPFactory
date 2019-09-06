@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class MOBPlatformBaseModel: NSObject {
     weak var platformInfo : MOBPlatformModel?
     init(_ superInfo : MOBPlatformModel) {
@@ -15,21 +17,96 @@ class MOBPlatformBaseModel: NSObject {
     }
 }
 
-class MOBPlatformShareParameterModel {
-    
-}
 
+typealias MOBPlatformShareItemModelBlock = ((_ view : UIView?, _ item : MOBPlatformShareItemModel, _ response :((_ respose : [String : String]?)->Void))->Void)?
 class MOBPlatformShareItemModel : MOBPlatformBaseModel {
     
-    var parameter : MOBPlatformShareParameterModel?
     
-    func share(_ view : UIView, _ callBack : (_ respose : [String : String])->Void) {
-        
+    /// 懒加载
+    lazy var parameter : [String : String] = {
+        [String:String]()
+    }()
+    
+   
+    
+    fileprivate var shareClick : MOBPlatformShareItemModelBlock = nil
+    
+    fileprivate var configure : (()->Void)?
+    
+    var name : String?
+    var image : String?
+    
+    typealias ShareItemBlockType = ( _ itemPara : [String : String])->Void
+    
+    @discardableResult
+    func itemParameter(_ para : ShareItemBlockType )-> Self {
+        para(parameter)
+        return self
+    }
+    @discardableResult
+    func itemName(_ itemName : String?) -> Self {
+        name = itemName
+        return self
+    }
+    @discardableResult
+    func itemImage(_ itemImage : String?) -> Self {
+        image = itemImage
+        return self
+    }
+    /// 初始化可以选择设置一个View或不设,分享时可以设置View，
+    /// 不设置默认使用shareView，若shareView为空则啥都不返回
+    
+    @discardableResult
+    func shareConfigure(_ callBack : MOBPlatformShareItemModelBlock) -> Self{
+        if let con = configure {
+            con()
+        }
+        shareClick = callBack
+        return self
+    }
+    
+    func share(_ view : UIView?, _ response : ((_ response : [String : String]?)->Void)){
+        if let click = shareClick {
+            if let superView = view {
+                click(superView, self, response)
+            }
+        }
     }
 }
 
 class MOBPlatformShareModel : MOBPlatformBaseModel {
-    var shareItems : [MOBPlatformShareItemModel]?
+    private var _shareItem : [MOBPlatformShareItemModel] = []
+    var shareItems : [MOBPlatformShareItemModel]?{
+        return _shareItem
+    }
+    
+    private var lastConfigureIndex = 0
+    
+    @discardableResult
+    func addShareItem(_ configureItem : ((_ item: MOBPlatformShareItemModel) -> Void)) -> Self{
+        let item = MOBPlatformShareItemModel.init(platformInfo!)
+        
+        let count = _shareItem.count
+        item.configure = {
+            self.lastConfigureIndex = count
+        }
+        configureItem(item)
+        _shareItem.append(item)
+        return self
+    }
+    
+    @discardableResult
+    func shareConfigure(_ callBack : MOBPlatformShareItemModelBlock) -> Self{
+        let currentIndex = lastConfigureIndex
+        let count = _shareItem.count
+        for index in currentIndex..<count {
+            _shareItem[index].shareClick = callBack
+        }
+        lastConfigureIndex = count
+        return self
+    }
+    
+    
 }
 
 enum MOBPlatformAuthStatus : String {
@@ -45,12 +122,12 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
             return authStatus == .finish
         }
     }
-    var isFail : Bool {
+    var isNeedAuth : Bool {
         get {
-            return authStatus == .fail
+            return authStatus == .fail || authStatus == .unstart
         }
     }
-    var isRequestUserInfo : Bool {
+    var isNeedUserInfo : Bool {
         get {
             return authStatus == .finish && _userInfo == nil
         }
@@ -59,9 +136,9 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
     /// 请求状态
     var authStatus = MOBPlatformAuthStatus.unstart
     
-    typealias observeBlock = (_ userInfo : [String : String]?)->Void
+    typealias ObserveBlock = (_ userInfo : [String : String]?)->Void
     
-    var observeObjs : [String:observeBlock] = [:]
+    var observeObjs : [String:ObserveBlock] = [:]
     
     
     /// 状态更新，用户数据
@@ -78,6 +155,7 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
             }else{
                 authStatus =  .unstart
             }
+            self.notifyToObserves(newData)
         }
     }
     
@@ -87,6 +165,7 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
         userInfo = MOBCache.get(forKey: superInfo.platformName) as? [String : String]
         authStatus = MOBCache.get(forKey: superInfo.platformName + "Auth") as! MOBPlatformAuthStatus
     }
+    typealias AuthRespone = (_ response : [String : String]?)->Void
     //检测当前授权状态
     func auth() {
         switch authStatus {
@@ -94,14 +173,14 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
             authStatus = .starting
             authPlatform { (dic) in
                 self.authStatus = .finish
-                self.notifyToObserves(dic)
+                self.userInfo = dic
             }
             break
             }
         case .finish:do {
             unauthPlatform { (dic) in
                 self.authStatus = .unstart
-                self.notifyToObserves(dic)
+                self.userInfo = dic
             }
             break
             }
@@ -110,13 +189,12 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
     }
     
     func notifyToObserves(_ dic : [String : String]?)  {
-        self.userInfo = dic
         for (_,block) in self.observeObjs {
-            block(self.userInfo)
+            block(dic)
         }
     }
     
-    func authPlatform(_ response : @escaping((_ response : [String : String]?)->Void)) {
+    func authPlatform(_ response : @escaping(AuthRespone)) {
         DispatchQueue.global().asyncAfter(deadline:DispatchTime.now() + 1 ) {
             let dic = ["key":"value"]
             MOBCache.setObject(MOBPlatformAuthStatus.finish, self.platformInfo!.platformName  + "Auth")
@@ -125,7 +203,7 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
         }
     }
     
-    func unauthPlatform(_ response : @escaping((_ response : [String : String]?)->Void)) {
+    func unauthPlatform(_ response : @escaping(AuthRespone)) {
         DispatchQueue.global().asyncAfter(deadline:DispatchTime.now() + 1 ) {
             MOBCache.setObject(nil, self.platformInfo!.platformName  + "Auth")
             MOBCache.setObject(nil, self.platformInfo!.platformName)
@@ -133,29 +211,28 @@ class MOBPlatformAuthModel : MOBPlatformBaseModel {
         }
     }
     
-    func getUserInfo(_ response : @escaping((_ response : [String : String]?)->Void)) {
-        if let info = _userInfo{
-            response(info)
+    func getUserInfo(_ response : @escaping(AuthRespone)) {
+        if isNeedAuth {
+            auth()
             return
-        }else{
+        }
+        if isNeedUserInfo {
             DispatchQueue.global().asyncAfter(deadline:DispatchTime.now() + 1 ) {
                 let dic = ["key":"value"]
-                MOBCache.setObject(MOBPlatformAuthStatus.finish, self.platformInfo!.platformName  + "Auth")
-                MOBCache.setObject(dic, self.platformInfo!.platformName)
-                response(dic)
+                self.userInfo = dic
             }
+        }else{
+            response(userInfo!)
         }
     }
     
-    func registerObserveAuthStatus(_ key : String, _ observe : @escaping observeBlock) {
+    func registerObserveAuthStatus(_ key : String, _ observe : @escaping ObserveBlock) {
         observeObjs[key] = observe
     }
     
     func unregisterObserveAuthStatus(_ key : String) {
         observeObjs[key] = nil
     }
-    
-    
 }
 
 class MOBPlatformModel : NSObject {
@@ -165,22 +242,23 @@ class MOBPlatformModel : NSObject {
     var platformName  : String = ""
     var platformImage : String?
     
-    //    let share : MOBPlatformShareModel = {
-    ////        MOBPlatformShareModel.init(self)
-    //    }()
+    lazy var share : MOBPlatformShareModel = {
+      return MOBPlatformShareModel.init(self)
+    }()
     
     lazy var userInfo : MOBPlatformAuthModel = {
         MOBPlatformAuthModel.init(self)
     }()
     
-    init(_ platformType : Int,  _ platformName : String, _ platformImage : String?) {
+    init(forPlatform platformType : Int) {
+        super.init()
         self.platformType = platformType
-        self.platformName = platformName
-        self.platformImage = platformImage
+        self.platformName = "ShareType_\(platformType)"
+        self.platformImage = "Icon_simple/sns_icon_\(platformType).png"
     }
     
     func configureShareInfo(_ shareConfigure: (_ shareConfigure : MOBPlatformShareModel) -> Void) -> Self {
-        //        shareConfigure(self.share)
+        shareConfigure(self.share)
         return self
     }
     
