@@ -13,42 +13,62 @@ import SnapKit
 class MOBHeadPicterTableViewCell: UITableViewCell {
     
     lazy var picter : UIImageView = {
-        UIImageView.init()
+        UIImageView.init().make_chain.addToSuperView(self.contentView).object
     }()
     
     lazy var nameLabel : UILabel = {
-        UILabel.init()
+        UILabel.init().make_chain
+            .addToSuperView(self.contentView)
+            .font(.PingFangLight(13)).object
     }()
     
     lazy var line : UIView = {
-        UIView.init().make_chain.backgroundColor(.lightGray).object
+        UIView.init()
+            .make_chain
+            .addToSuperView(self.contentView)
+            .backgroundColor("dddddd".color()).object
     }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setup()
-        
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has @objc not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
+    
     
     func setup()  {
        picter.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(20)
             make.centerY.equalToSuperview()
+            make.height.width.equalTo(30)
        }
        nameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(picter).offset(10)
+        make.left.equalTo(picter.snp_right).offset(10)
             make.centerY.equalTo(picter)
        }
-        
+        line.snp.makeConstraints { (make) in
+            make.left.equalTo(nameLabel.snp_left)
+            make.bottom.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
     }
     
-    func updateModel(_ model: MOBPlatformModel) {
-        
+    @objc func updateModel(_ model: AnyObject) {
+        if model is MOBPlatformModel {
+            let m = model as! MOBPlatformModel
+            self.picter.image = UIImage.init(named: m.platformImage!)
+            self.nameLabel.text = m.platformName
+        }else if model is MOBPlatformShareItemModel {
+            let m = model as! MOBPlatformShareItemModel
+//            self.picter.image = UIImage.init(named: m.platformInfo?.platformImage)
+            self.nameLabel.text = m.name
+        }
+         
     }
 }
 
@@ -283,7 +303,9 @@ class MOBViewController: UIViewController, UIScrollViewDelegate {
                 let childVcClass = (object as! String).getClass() as? UIViewController.Type
                 object = childVcClass?.init() ?? UIViewController.init()
                 viewControllers[index] = object
+                
                 let viewController : UIViewController = object as! UIViewController
+               
                 let view = viewController.view!
                 view.make_chain
                 .addToSuperView(_scrollView!)

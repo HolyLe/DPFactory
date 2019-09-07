@@ -61,7 +61,7 @@ extension MOBTableViewProtocol where Self : UIViewController{
                 }
                 var tableViewClass : UITableView.Type?
                 if let clas = tableViewModel.clas {
-                    tableViewClass = getClassFromString(clas) as? UITableView.Type
+                    tableViewClass = clas.getClass() as? UITableView.Type
                 }
                 if (tableViewClass == nil) {
                     tableViewClass = UITableView.self
@@ -89,7 +89,7 @@ extension MOBTableViewProtocol where Self : UIViewController{
 
 @objc protocol MOBTableViewCellProtocol {
     @objc func model(_ model : Any) -> Self
-    @objc optional func updateModel (_ model : Any)
+    @objc optional func updateModel (_ model : AnyObject)
 }
 
 extension UITableViewCell : MOBTableViewCellProtocol {

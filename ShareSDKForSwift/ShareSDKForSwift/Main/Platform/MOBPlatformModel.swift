@@ -85,13 +85,12 @@ class MOBPlatformShareModel : MOBPlatformBaseModel {
     @discardableResult
     func addShareItem(_ configureItem : ((_ item: MOBPlatformShareItemModel) -> Void)) -> Self{
         let item = MOBPlatformShareItemModel.init(platformInfo!)
-        
+        _shareItem.append(item)
         let count = _shareItem.count
         item.configure = {
             self.lastConfigureIndex = count
         }
         configureItem(item)
-        _shareItem.append(item)
         return self
     }
     
@@ -102,7 +101,6 @@ class MOBPlatformShareModel : MOBPlatformBaseModel {
         for index in currentIndex..<count {
             _shareItem[index].shareClick = callBack
         }
-        lastConfigureIndex = count
         return self
     }
     
@@ -253,8 +251,8 @@ class MOBPlatformModel : NSObject {
     init(forPlatform platformType : Int) {
         super.init()
         self.platformType = platformType
-        self.platformName = "ShareType_\(platformType)"
-        self.platformImage = "Icon_simple/sns_icon_\(platformType).png"
+        self.platformName = "ShareType_1".localizedString
+        self.platformImage = "sns_icon_\(platformType).png"
     }
     
     func configureShareInfo(_ shareConfigure: (_ shareConfigure : MOBPlatformShareModel) -> Void) -> Self {

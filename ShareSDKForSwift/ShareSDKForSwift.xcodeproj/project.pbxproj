@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7301E0C52323576B00E02C86 /* UIFont+ShareSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7301E0C42323576B00E02C86 /* UIFont+ShareSDK.swift */; };
+		7301E0C8232368A300E02C86 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7301E0C6232368A300E02C86 /* Localizable.strings */; };
 		731B8E4C231ECA010011385D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731B8E4B231ECA010011385D /* Util.swift */; };
 		AFE08CEBA2D3B828E7E7435E /* libPods-ShareSDKForSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9BD230B49B3404C3F22D50 /* libPods-ShareSDKForSwift.a */; };
 		D5097C0823225F4F00C60756 /* MOBPlatformDataSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5097C0723225F4F00C60756 /* MOBPlatformDataSources.swift */; };
@@ -167,6 +169,10 @@
 /* Begin PBXFileReference section */
 		0A9BD230B49B3404C3F22D50 /* libPods-ShareSDKForSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareSDKForSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDEA13B1EFD38E80738CD17 /* Pods-ShareSDKForSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.debug.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		7301E0C42323576B00E02C86 /* UIFont+ShareSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+ShareSDK.swift"; sourceTree = "<group>"; };
+		7301E0C7232368A300E02C86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Localizable.strings; sourceTree = "<group>"; };
+		7301E0C9232368BD00E02C86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7301E0CA232368BE00E02C86 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		731B8E4B231ECA010011385D /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8A383BEBBC1A55D5556279BD /* Pods-ShareSDKForSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareSDKForSwift.release.xcconfig"; path = "Target Support Files/Pods-ShareSDKForSwift/Pods-ShareSDKForSwift.release.xcconfig"; sourceTree = "<group>"; };
 		D5097C012322526C00C60756 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "../zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -357,6 +363,7 @@
 				731B8E4B231ECA010011385D /* Util.swift */,
 				D5097C092322661400C60756 /* UIColor+ShareSDK.swift */,
 				D5097C0B2322662100C60756 /* String+ShareSDK.swift */,
+				7301E0C42323576B00E02C86 /* UIFont+ShareSDK.swift */,
 				D5C86EB72320A9D500EFBF73 /* MOBCache.swift */,
 			);
 			path = Util;
@@ -417,6 +424,7 @@
 			children = (
 				D588275C231E1E8B00260B6B /* LaunchScreen.storyboard */,
 				D58827C4231E7EBD00260B6B /* Main.storyboard */,
+				7301E0C6232368A300E02C86 /* Localizable.strings */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -806,6 +814,7 @@
 				D5AC9A0A231FD84100A49E97 /* sns_icon_50@2x.png in Resources */,
 				D5AC99CA231FD84100A49E97 /* sns_icon_41@2x.png in Resources */,
 				D5AC99FE231FD84100A49E97 /* sns_icon_7@2x.png in Resources */,
+				7301E0C8232368A300E02C86 /* Localizable.strings in Resources */,
 				D5AC9A0B231FD84100A49E97 /* sns_icon_52.png in Resources */,
 				D5AC9A17231FD84100A49E97 /* sns_icon_44.png in Resources */,
 				D5AC9A03231FD84100A49E97 /* sns_icon_20.png in Resources */,
@@ -884,6 +893,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D58827A0231E6E3700260B6B /* CAShaperLayer+XPChain.swift in Sources */,
+				7301E0C52323576B00E02C86 /* UIFont+ShareSDK.swift in Sources */,
 				D58827A9231E6E3700260B6B /* UITextFiled+XPChain.swift in Sources */,
 				D5882776231E24EC00260B6B /* MOBViewController.swift in Sources */,
 				D58827C3231E740B00260B6B /* XPChain+SnapKit.swift in Sources */,
@@ -939,6 +949,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7301E0C6232368A300E02C86 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7301E0C7232368A300E02C86 /* Base */,
+				7301E0C9232368BD00E02C86 /* en */,
+				7301E0CA232368BE00E02C86 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D588275C231E1E8B00260B6B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

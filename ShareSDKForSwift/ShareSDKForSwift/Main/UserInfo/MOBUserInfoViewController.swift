@@ -14,7 +14,7 @@ class MOBUserInfoTableViewCell: MOBHeadPicterTableViewCell {
         UIImageView.init()
     }()
     
-    override func updateModel(_ model: MOBPlatformModel) {
+    override func updateModel(_ model: AnyObject) {
          super.updateModel(model)
     }
     
