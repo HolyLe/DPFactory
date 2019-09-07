@@ -88,12 +88,12 @@ extension MOBTableViewProtocol where Self : UIViewController{
 }
 
 @objc protocol MOBTableViewCellProtocol {
-    @objc func model(_ model : AnyObject) -> Self
+    @objc func model(_ model : AnyObject) -> UITableViewCell
     @objc optional func updateModel (_ model : AnyObject)
 }
 
 extension UITableViewCell : MOBTableViewCellProtocol {
-    func model(_ model: AnyObject) -> Self {
+    func model(_ model: AnyObject) -> UITableViewCell {
         
         let sel = sel_registerName(("updateModel:".toUnsafeMutablePointer())!)
         if self.responds(to: sel) {

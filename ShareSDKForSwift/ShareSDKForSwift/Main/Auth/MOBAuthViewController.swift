@@ -37,7 +37,7 @@ class MOBAuthViewController: UIViewController, MOBTableViewProtocol {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "MOBAuthTableViewCell", for: indexPath).model(dataSource[indexPath.row])
+        return tableView.dequeueReusableCell(withIdentifier: "MOBAuthTableViewCell", for: indexPath).model(dataSource[indexPath.row] as NSObject)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
