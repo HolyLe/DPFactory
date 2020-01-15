@@ -1,6 +1,0 @@
-module Pods_ShareSDKForSwift {
-  umbrella header "Pods-ShareSDKForSwift-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "DPFactory"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "工厂类"
   s.homepage     = "https://github.com/HolyLe/DPFactory.git"
   s.license      = "MIT"
@@ -42,7 +42,9 @@ Pod::Spec.new do |s|
      ss.source_files = 'Factory/Timer/*.{h,m}'
  
   end
- 
+  s.subspec 'Oasis' do |ss|
+     ss.vendored_frameworks = 'Factory/Oasis/OasisSDK.framework'
+  end
   
 
 end
